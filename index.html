@@ -182,7 +182,7 @@
                 Press [E] to Enter Vehicle
             </div>
             <div id="hotbar" class="hud-panel p-2 rounded-2xl flex items-center gap-1.5 overflow-x-auto max-w-full">
-                <!-- Dynamically Populated by JavaScript -->
+                <!-- Populated by JS -->
             </div>
         </div>
     </div>
@@ -218,7 +218,7 @@
                     </div>
                     <div>
                         <h2 class="text-2xl font-black tracking-wider text-white">GTA CRAFT</h2>
-                        <p class="text-xs text-gray-400">Fast 3D Sandbox • Destructible City • GitHub Pages Ready</p>
+                        <p class="text-xs text-gray-400">Bosses • Factions • Vehicles • Destructible Sandbox</p>
                     </div>
                 </div>
                 <button id="pause-close" class="text-gray-400 hover:text-white text-2xl px-2">
@@ -229,7 +229,7 @@
             <!-- Modal Nav Tabs -->
             <div class="flex border-b border-gray-800 mb-4 gap-2">
                 <button id="tab-btn-controls" class="px-4 py-2 text-sm font-bold border-b-2 border-yellow-400 text-yellow-400">Controls</button>
-                <button id="tab-btn-deploy" class="px-4 py-2 text-sm font-bold border-b-2 border-transparent text-gray-400 hover:text-white">GitHub Pages Guide</button>
+                <button id="tab-btn-deploy" class="px-4 py-2 text-sm font-bold border-b-2 border-transparent text-gray-400 hover:text-white">GitHub Pages Guide[cite: 1]</button>
                 <button id="tab-btn-settings" class="px-4 py-2 text-sm font-bold border-b-2 border-transparent text-gray-400 hover:text-white">Audio & Settings</button>
             </div>
 
@@ -247,8 +247,12 @@
                             <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Mouse Left Click</kbd>
                         </div>
                         <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
-                            <span class="text-gray-300"><i class="fa-solid fa-car mr-2 text-yellow-400"></i> Enter / Exit Car</span>
+                            <span class="text-gray-300"><i class="fa-solid fa-car mr-2 text-yellow-400"></i> Enter / Exit Vehicle</span>
                             <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Key [E]</kbd>
+                        </div>
+                        <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
+                            <span class="text-gray-300"><i class="fa-solid fa-rotate-right mr-2 text-yellow-400"></i> Reload Weapon</span>
+                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Key [R]</kbd>
                         </div>
                         <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
                             <span class="text-gray-300"><i class="fa-solid fa-bolt mr-2 text-yellow-400"></i> Sprint / Nitro Boost</span>
@@ -258,23 +262,19 @@
                             <span class="text-gray-300"><i class="fa-solid fa-layer-group mr-2 text-yellow-400"></i> Hotbar Items</span>
                             <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Keys [1 - 9] / Scroll</kbd>
                         </div>
-                        <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
-                            <span class="text-gray-300"><i class="fa-solid fa-pause mr-2 text-yellow-400"></i> Pause Game</span>
-                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Key [P] or [Esc]</kbd>
-                        </div>
                     </div>
                 </div>
 
                 <!-- GITHUB PAGES DEPLOY TAB -->
                 <div id="tab-deploy" class="space-y-3 hidden text-sm text-gray-300">
-                    <h3 class="font-bold text-white text-base">Hosting "GTA Craft" on GitHub Pages:</h3>
+                    <h3 class="font-bold text-white text-base">Hosting "GTA Craft" on GitHub Pages[cite: 1]:</h3>
                     <ol class="list-decimal list-inside space-y-2 bg-gray-900/80 p-4 rounded-xl border border-gray-800 font-sans">
-                        <li>Create a new public repository on GitHub (e.g., <code class="text-yellow-400 font-mono">gtacraft</code>).</li>
-                        <li>Create a file named <code class="text-yellow-400 font-mono">index.html</code> in the repository root.</li>
-                        <li>Paste this entire single file into <code class="text-yellow-400 font-mono">index.html</code> and commit.</li>
-                        <li>Navigate to <strong>Settings</strong> &rarr; <strong>Pages</strong>.</li>
-                        <li>Set Source to <strong>Deploy from a branch</strong>, select branch <code class="text-yellow-400 font-mono">main</code>, and Save.</li>
-                        <li>Your game will be live online instantly!</li>
+                        <li>Create a new public repository on GitHub (e.g., <code class="text-yellow-400 font-mono">gtacraft</code>)[cite: 1].</li>
+                        <li>Create a file named <code class="text-yellow-400 font-mono">index.html</code> in the repository root[cite: 1].</li>
+                        <li>Paste this entire single file into <code class="text-yellow-400 font-mono">index.html</code> and commit[cite: 1].</li>
+                        <li>Navigate to <strong>Settings</strong> &rarr; <strong>Pages</strong>[cite: 1].</li>
+                        <li>Set Source to <strong>Deploy from a branch</strong>, select branch <code class="text-yellow-400 font-mono">main</code>, and Save[cite: 1].</li>
+                        <li>Your game will be live online instantly[cite: 1]!</li>
                     </ol>
                 </div>
 
@@ -330,27 +330,41 @@
     </div>
 
     <script>
-        // Web Audio Synthesizer Engine (Instant startup without loading audio files)
+        // Web Audio Synthesizer Engine (Optimized to pre-cache explosion noise buffer and prevent frame drops)
         class SoundEngine {
             constructor() {
                 this.ctx = null;
                 this.enabled = true;
+                this.explosionBuffer = null;
             }
 
             init() {
-                if (!this.ctx) {
-                    const AudioContext = window.AudioContext || window.webkitAudioContext;
-                    if (AudioContext) this.ctx = new AudioContext();
-                }
-                if (this.ctx && this.ctx.state === 'suspended') {
-                    this.ctx.resume();
+                try {
+                    if (!this.ctx) {
+                        const AudioContext = window.AudioContext || window.webkitAudioContext;
+                        if (AudioContext) {
+                            this.ctx = new AudioContext();
+                            // Pre-generate noise buffer once to prevent audio generation lag during explosion
+                            const bufferSize = this.ctx.sampleRate * 0.35;
+                            this.explosionBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+                            const data = this.explosionBuffer.getChannelData(0);
+                            for (let i = 0; i < bufferSize; i++) {
+                                data[i] = Math.random() * 2 - 1;
+                            }
+                        }
+                    }
+                    if (this.ctx && this.ctx.state === 'suspended') {
+                        this.ctx.resume();
+                    }
+                } catch (e) {
+                    console.warn("Web Audio API blocked", e);
                 }
             }
 
             playGunshot(type) {
                 if (!this.enabled) return;
                 this.init();
-                if (!this.ctx) return;
+                if (!this.ctx || this.ctx.state !== 'running') return;
 
                 const now = this.ctx.currentTime;
                 const osc = this.ctx.createOscillator();
@@ -367,7 +381,7 @@
                     gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
                     osc.start(now);
                     osc.stop(now + 0.12);
-                } else if (type === 'mg') {
+                } else if (type === 'mg' || type === 'turret') {
                     osc.type = 'square';
                     osc.frequency.setValueAtTime(450, now);
                     osc.frequency.exponentialRampToValueAtTime(50, now + 0.08);
@@ -375,7 +389,7 @@
                     gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
                     osc.start(now);
                     osc.stop(now + 0.08);
-                } else if (type === 'plasma' || type === 'turret') {
+                } else if (type === 'plasma') {
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(850, now);
                     osc.frequency.exponentialRampToValueAtTime(120, now + 0.14);
@@ -397,7 +411,7 @@
             playHit() {
                 if (!this.enabled) return;
                 this.init();
-                if (!this.ctx) return;
+                if (!this.ctx || this.ctx.state !== 'running') return;
                 const now = this.ctx.currentTime;
                 const osc = this.ctx.createOscillator();
                 const gain = this.ctx.createGain();
@@ -415,7 +429,7 @@
             playCrash() {
                 if (!this.enabled) return;
                 this.init();
-                if (!this.ctx) return;
+                if (!this.ctx || this.ctx.state !== 'running') return;
                 const now = this.ctx.currentTime;
                 const osc = this.ctx.createOscillator();
                 const gain = this.ctx.createGain();
@@ -433,18 +447,11 @@
             playExplosion() {
                 if (!this.enabled) return;
                 this.init();
-                if (!this.ctx) return;
+                if (!this.ctx || this.ctx.state !== 'running' || !this.explosionBuffer) return;
                 const now = this.ctx.currentTime;
-                
-                const bufferSize = this.ctx.sampleRate * 0.35;
-                const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-                const data = buffer.getChannelData(0);
-                for (let i = 0; i < bufferSize; i++) {
-                    data[i] = Math.random() * 2 - 1;
-                }
 
                 const noise = this.ctx.createBufferSource();
-                noise.buffer = buffer;
+                noise.buffer = this.explosionBuffer;
 
                 const filter = this.ctx.createBiquadFilter();
                 filter.type = 'lowpass';
@@ -465,7 +472,7 @@
             playPickup() {
                 if (!this.enabled) return;
                 this.init();
-                if (!this.ctx) return;
+                if (!this.ctx || this.ctx.state !== 'running') return;
                 const now = this.ctx.currentTime;
                 const osc = this.ctx.createOscillator();
                 const gain = this.ctx.createGain();
@@ -483,7 +490,7 @@
             playBuild() {
                 if (!this.enabled) return;
                 this.init();
-                if (!this.ctx) return;
+                if (!this.ctx || this.ctx.state !== 'running') return;
                 const now = this.ctx.currentTime;
                 const osc = this.ctx.createOscillator();
                 const gain = this.ctx.createGain();
@@ -517,8 +524,8 @@
         // Global Configuration & State
         const CONFIG = {
             WORLD_SIZE: 180,
-            SPAWN_ENEMY_INTERVAL: 3.2,
-            MAX_ENEMIES: 30,
+            SPAWN_ENEMY_INTERVAL: 3.0,
+            MAX_ENEMIES: 35,
             MAX_PARTICLES: 150
         };
 
@@ -561,7 +568,6 @@
 
                 this.mesh = new THREE.Group();
                 
-                // Body
                 const bodyGeo = new THREE.CylinderGeometry(0.5, 0.5, 1.4, 12);
                 const bodyMat = new THREE.MeshStandardMaterial({ color: 0x2563eb, roughness: 0.3 });
                 this.body = new THREE.Mesh(bodyGeo, bodyMat);
@@ -569,7 +575,6 @@
                 this.body.castShadow = true;
                 this.mesh.add(this.body);
 
-                // Head
                 const headGeo = new THREE.SphereGeometry(0.35, 12, 12);
                 const headMat = new THREE.MeshStandardMaterial({ color: 0xfbcfe8, roughness: 0.5 });
                 const head = new THREE.Mesh(headGeo, headMat);
@@ -577,7 +582,6 @@
                 head.castShadow = true;
                 this.mesh.add(head);
 
-                // Gun Mesh
                 const gunGeo = new THREE.BoxGeometry(0.2, 0.2, 0.7);
                 const gunMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.8 });
                 this.gunMesh = new THREE.Mesh(gunGeo, gunMat);
@@ -629,7 +633,6 @@
                     }
                 }
 
-                // Mouse Rotation Aiming
                 const dx = state.mouse.worldPos.x - this.mesh.position.x;
                 const dz = state.mouse.worldPos.z - this.mesh.position.z;
                 this.mesh.rotation.y = Math.atan2(dx, dz);
@@ -648,68 +651,95 @@
         }
 
         class Vehicle {
-            constructor(x, z, color = 0xd97706) {
-                this.radius = 1.8;
+            constructor(x, z, type = 'car') {
+                this.type = type;
+                this.radius = type === 'bike' ? 1.2 : (type === 'tank' ? 2.2 : 1.8);
                 this.speed = 0;
-                this.maxSpeed = 26;
-                this.accel = 20;
+                this.hp = type === 'tank' ? 800 : (type === 'sports' ? 220 : 350);
+                this.maxSpeed = type === 'sports' ? 36 : (type === 'bike' ? 32 : (type === 'tank' ? 18 : 26));
+                this.accel = type === 'sports' ? 28 : (type === 'tank' ? 12 : 20);
                 this.friction = 0.96;
                 this.angle = 0;
-                this.turnSpeed = 2.5;
-                this.hp = 300;
+                this.turnSpeed = type === 'bike' ? 3.5 : (type === 'tank' ? 1.8 : 2.5);
                 this.driver = null;
 
                 this.mesh = new THREE.Group();
+                let bodyColor = type === 'sports' ? 0xef4444 : (type === 'tank' ? 0x334155 : (type === 'bike' ? 0x06b6d4 : 0xd97706));
 
-                // Body
-                const bodyGeo = new THREE.BoxGeometry(2.2, 1.0, 4.2);
-                const bodyMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.2, metalness: 0.5 });
-                const body = new THREE.Mesh(bodyGeo, bodyMat);
-                body.position.y = 0.7;
-                body.castShadow = true;
-                this.mesh.add(body);
+                if (type === 'bike') {
+                    const bodyGeo = new THREE.BoxGeometry(0.8, 0.7, 2.2);
+                    const bodyMat = new THREE.MeshStandardMaterial({ color: bodyColor, metalness: 0.6 });
+                    const body = new THREE.Mesh(bodyGeo, bodyMat);
+                    body.position.y = 0.5;
+                    this.mesh.add(body);
+                } else if (type === 'tank') {
+                    const bodyGeo = new THREE.BoxGeometry(2.8, 1.2, 4.5);
+                    const bodyMat = new THREE.MeshStandardMaterial({ color: bodyColor, metalness: 0.8, roughness: 0.3 });
+                    const body = new THREE.Mesh(bodyGeo, bodyMat);
+                    body.position.y = 0.7;
+                    this.mesh.add(body);
 
-                // Cabin
-                const cabinGeo = new THREE.BoxGeometry(1.8, 0.8, 2.0);
-                const cabinMat = new THREE.MeshStandardMaterial({ color: 0x0f172a });
-                const cabin = new THREE.Mesh(cabinGeo, cabinMat);
-                cabin.position.set(0, 1.4, -0.2);
-                this.mesh.add(cabin);
+                    const turretGeo = new THREE.BoxGeometry(1.5, 0.8, 2.0);
+                    const turret = new THREE.Mesh(turretGeo, bodyMat);
+                    turret.position.set(0, 1.5, 0);
+                    this.mesh.add(turret);
+                } else {
+                    const bodyGeo = new THREE.BoxGeometry(2.2, type === 'sports' ? 0.7 : 1.0, 4.2);
+                    const bodyMat = new THREE.MeshStandardMaterial({ color: bodyColor, roughness: 0.2, metalness: 0.5 });
+                    const body = new THREE.Mesh(bodyGeo, bodyMat);
+                    body.position.y = type === 'sports' ? 0.5 : 0.7;
+                    body.castShadow = true;
+                    this.mesh.add(body);
+
+                    if (type !== 'sports') {
+                        const cabinGeo = new THREE.BoxGeometry(1.8, 0.8, 2.0);
+                        const cabinMat = new THREE.MeshStandardMaterial({ color: 0x0f172a });
+                        const cabin = new THREE.Mesh(cabinGeo, cabinMat);
+                        cabin.position.set(0, 1.4, -0.2);
+                        this.mesh.add(cabin);
+                    }
+                }
 
                 // Wheels
                 const wheelGeo = new THREE.CylinderGeometry(0.4, 0.4, 0.3, 12);
                 const wheelMat = new THREE.MeshStandardMaterial({ color: 0x111827 });
                 wheelGeo.rotateZ(Math.PI / 2);
 
-                [[-1.1, 0.4, 1.3], [1.1, 0.4, 1.3], [-1.1, 0.4, -1.3], [1.1, 0.4, -1.3]].forEach(pos => {
+                const wheelOffsets = type === 'bike' ? [[-0.5, 0.3, 0.9], [0.5, 0.3, 0.9], [-0.5, 0.3, -0.9], [0.5, 0.3, -0.9]] :
+                    [[-1.1, 0.4, 1.3], [1.1, 0.4, 1.3], [-1.1, 0.4, -1.3], [1.1, 0.4, -1.3]];
+
+                wheelOffsets.forEach(pos => {
                     const w = new THREE.Mesh(wheelGeo, wheelMat);
                     w.position.set(...pos);
                     this.mesh.add(w);
                 });
 
-                // Headlight Spotlights
-                const headlightMat = new THREE.MeshBasicMaterial({ color: 0xffedd5 });
-                const hlLeft = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.2, 0.1), headlightMat);
-                hlLeft.position.set(-0.7, 0.8, 2.12);
-                const hlRight = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.2, 0.1), headlightMat);
-                hlRight.position.set(0.7, 0.8, 2.12);
-                this.mesh.add(hlLeft);
-                this.mesh.add(hlRight);
+                // HEADLIGHTS IMPLEMENTATION
+                this.lights = [];
+                const headlightGeo = new THREE.SphereGeometry(0.15, 8, 8);
+                const headlightMat = new THREE.MeshBasicMaterial({ color: 0xffffee });
 
-                this.spotLightLeft = new THREE.SpotLight(0xfff7ed, 3.5, 35, Math.PI / 5, 0.4, 1);
-                this.spotLightLeft.position.set(-0.7, 0.8, 2.1);
-                this.spotLightLeft.target.position.set(-0.7, 0, 10);
-                this.mesh.add(this.spotLightLeft);
-                this.mesh.add(this.spotLightLeft.target);
+                [-0.8, 0.8].forEach(offsetX => {
+                    const bulb = new THREE.Mesh(headlightGeo, headlightMat);
+                    bulb.position.set(offsetX, 0.5, type === 'tank' ? 2.3 : 2.1);
+                    this.mesh.add(bulb);
 
-                this.spotLightRight = new THREE.SpotLight(0xfff7ed, 3.5, 35, Math.PI / 5, 0.4, 1);
-                this.spotLightRight.position.set(0.7, 0.8, 2.1);
-                this.spotLightRight.target.position.set(0.7, 0, 10);
-                this.mesh.add(this.spotLightRight);
-                this.mesh.add(this.spotLightRight.target);
+                    const spotLight = new THREE.SpotLight(0xfffaed, 2.5, 25, Math.PI / 4, 0.5, 1);
+                    spotLight.position.set(offsetX, 0.5, type === 'tank' ? 2.3 : 2.1);
+                    spotLight.target.position.set(offsetX, 0, 10);
+                    this.mesh.add(spotLight);
+                    this.mesh.add(spotLight.target);
+                    
+                    spotLight.visible = false;
+                    this.lights.push(spotLight);
+                });
 
                 this.mesh.position.set(x, 0, z);
                 scene.add(this.mesh);
+            }
+
+            setHeadlights(enabled) {
+                this.lights.forEach(l => l.visible = enabled);
             }
 
             update(dt) {
@@ -743,24 +773,22 @@
                     const nextZ = this.mesh.position.z + moveZ;
 
                     const bound = CONFIG.WORLD_SIZE / 2 - 3;
-                    
-                    // --- CAR ELASTIC BOUNCE PHYSICS & IMPACT DAMAGE ---
-                    const hitStructX = checkStructureCollision(nextX, this.mesh.position.z, this.radius);
-                    const hitStructZ = checkStructureCollision(this.mesh.position.x, nextZ, this.radius);
+                    const hitX = checkStructureCollision(nextX, this.mesh.position.z, this.radius);
+                    const hitZ = checkStructureCollision(this.mesh.position.x, nextZ, this.radius);
+                    const hitBoth = checkStructureCollision(nextX, nextZ, this.radius);
 
-                    if (!hitStructX && Math.abs(nextX) < bound) {
+                    if (Math.abs(nextX) < bound && !hitX) {
                         this.mesh.position.x = nextX;
                     } else {
-                        // Elastic Bounce
                         if (Math.abs(this.speed) > 4) {
                             audio.playCrash();
                             spawnParticleBurst(this.mesh.position, 0xf59e0b, 10);
                             damageStructureAt(nextX, this.mesh.position.z, Math.floor(Math.abs(this.speed) * 3));
                         }
-                        this.speed = -this.speed * 0.55; // Elastic bounce back!
+                        this.speed = -this.speed * 0.55;
                     }
 
-                    if (!hitStructZ && Math.abs(nextZ) < bound) {
+                    if (Math.abs(nextZ) < bound && !hitZ && !hitBoth) {
                         this.mesh.position.z = nextZ;
                     } else {
                         if (Math.abs(this.speed) > 4) {
@@ -771,7 +799,6 @@
                         this.speed = -this.speed * 0.55;
                     }
 
-                    // Roadkill Enemies Check
                     if (Math.abs(this.speed) > 5) {
                         entities.enemies.forEach(enemy => {
                             const dist = Math.hypot(this.mesh.position.x - enemy.mesh.position.x, this.mesh.position.z - enemy.mesh.position.z);
@@ -787,40 +814,47 @@
         }
 
         class Enemy {
-            constructor(x, z) {
-                this.hp = 100;
-                this.maxHp = 100;
-                this.speed = 4.5 + Math.random() * 2.5;
-                this.radius = 0.9;
-                this.damage = 12;
+            constructor(x, z, isBoss = false, faction = 'gang') {
+                this.isBoss = isBoss;
+                this.faction = faction;
+                this.hp = isBoss ? 500 : (faction === 'police' ? 140 : 100);
+                this.maxHp = this.hp;
+                this.speed = isBoss ? 3.8 : (faction === 'police' ? 5.2 : 4.5 + Math.random() * 2.0);
+                this.radius = isBoss ? 1.6 : 0.9;
+                this.damage = isBoss ? 35 : (faction === 'police' ? 18 : 12);
                 this.lastAttackTime = 0;
                 this.flashTimer = 0;
 
                 this.mesh = new THREE.Group();
 
-                const bodyGeo = new THREE.CylinderGeometry(0.5, 0.5, 1.4, 10);
-                this.bodyMat = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.4 });
+                let color = 0xd97706;
+                if (faction === 'police') color = 0x2563eb;
+                if (faction === 'zombie') color = 0x15803d;
+                if (isBoss) color = 0xef4444;
+
+                const scaleFactor = isBoss ? 1.8 : 1.0;
+                const bodyGeo = new THREE.CylinderGeometry(0.5 * scaleFactor, 0.5 * scaleFactor, 1.4 * scaleFactor, 10);
+                this.bodyMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.4 });
                 this.body = new THREE.Mesh(bodyGeo, this.bodyMat);
-                this.body.position.y = 0.7;
+                this.body.position.y = 0.7 * scaleFactor;
                 this.body.castShadow = true;
                 this.mesh.add(this.body);
 
-                const headGeo = new THREE.SphereGeometry(0.35, 10, 10);
-                const headMat = new THREE.MeshStandardMaterial({ color: 0xd97706 });
+                const headGeo = new THREE.SphereGeometry(0.35 * scaleFactor, 10, 10);
+                const headMat = new THREE.MeshStandardMaterial({ color: color });
                 const head = new THREE.Mesh(headGeo, headMat);
-                head.position.y = 1.6;
+                head.position.y = 1.6 * scaleFactor;
                 this.mesh.add(head);
 
-                // Floating HP Canvas Bar
                 const canvas = document.createElement('canvas');
                 canvas.width = 64;
                 canvas.height = 8;
                 this.hpCanvas = canvas;
                 this.hpTexture = new THREE.CanvasTexture(canvas);
-                const hpGeo = new THREE.PlaneGeometry(1.2, 0.15);
+                const hpGeo = new THREE.PlaneGeometry(isBoss ? 2.2 : 1.2, 0.18);
                 const hpMat = new THREE.MeshBasicMaterial({ map: this.hpTexture, transparent: true });
                 this.hpSprite = new THREE.Mesh(hpGeo, hpMat);
-                this.hpSprite.position.set(0, 2.2, 0);
+                this.hpSprite.position.set(0, (1.6 * scaleFactor) + 0.6, 0);
                 this.mesh.add(this.hpSprite);
 
                 this.updateHpBar();
@@ -842,15 +876,32 @@
                 if (this.flashTimer > 0) {
                     this.flashTimer -= dt;
                     if (this.flashTimer <= 0) {
-                        this.bodyMat.color.setHex(0xd97706);
+                        let color = this.faction === 'police' ? 0x2563eb : (this.faction === 'zombie' ? 0x15803d : (this.isBoss ? 0xef4444 : 0xd97706));
+                        this.bodyMat.color.setHex(color);
                         this.bodyMat.emissive.setHex(0x000000);
                     }
                 }
 
                 this.hpSprite.quaternion.copy(camera.quaternion);
 
-                const dx = playerPos.x - this.mesh.position.x;
-                const dz = playerPos.z - this.mesh.position.z;
+                let targetPos = playerPos;
+                if (this.faction === 'police') {
+                    let nearestGang = null;
+                    let minDist = 18.0;
+                    entities.enemies.forEach(other => {
+                        if (other !== this && other.faction === 'gang') {
+                            const d = Math.hypot(other.mesh.position.x - this.mesh.position.x, other.mesh.position.z - this.mesh.position.z);
+                            if (d < minDist) {
+                                minDist = d;
+                                nearestGang = other;
+                            }
+                        }
+                    });
+                    if (nearestGang) targetPos = nearestGang.mesh.position;
+                }
+
+                const dx = targetPos.x - this.mesh.position.x;
+                const dz = targetPos.z - this.mesh.position.z;
                 const dist = Math.hypot(dx, dz);
 
                 if (dist > 1.2) {
@@ -868,7 +919,7 @@
                     }
 
                     this.mesh.rotation.y = Math.atan2(dx, dz);
-                } else {
+                } else if (targetPos === playerPos) {
                     const now = clock.getElapsedTime();
                     if (now - this.lastAttackTime > 1.0) {
                         entities.player.takeDamage(this.damage);
@@ -938,7 +989,6 @@
             }
 
             update(dt) {
-                // Auto-Turret Target Acquisition & Firing
                 if (this.type === 'turret') {
                     let nearestEnemy = null;
                     let minDist = 20.0;
@@ -961,7 +1011,11 @@
                         if (now - this.lastTurretShot > 0.28) {
                             this.lastTurretShot = now;
                             
-                            const spawnPos = new THREE.Vector3(this.mesh.position.x, 0.8, this.mesh.position.z);
+                            const spawnPos = new THREE.Vector3(
+                                this.mesh.position.x + Math.sin(targetAngle) * 1.4, 
+                                0.8, 
+                                this.mesh.position.z + Math.cos(targetAngle) * 1.4
+                            );
                             const dir = new THREE.Vector3(Math.sin(targetAngle), 0, Math.cos(targetAngle)).normalize();
                             
                             entities.bullets.push({
@@ -971,7 +1025,8 @@
                                 speed: 45,
                                 damage: 25,
                                 radius: 0.5,
-                                lifetime: 1.2
+                                lifetime: 1.2,
+                                owner: this
                             });
 
                             audio.playGunshot('turret');
@@ -982,7 +1037,6 @@
         }
 
         function generateCity() {
-            // Asphalt Ground Plane
             const groundGeo = new THREE.PlaneGeometry(CONFIG.WORLD_SIZE, CONFIG.WORLD_SIZE);
             groundGeo.rotateX(-Math.PI / 2);
             const groundMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.9 });
@@ -990,17 +1044,14 @@
             groundPlane.receiveShadow = true;
             scene.add(groundPlane);
 
-            // OPTIMIZED CITY LAYOUT: Wider 4-lane roads & spaced out buildings
             const blockSize = 32;
             const halfWorld = CONFIG.WORLD_SIZE / 2;
 
             for (let x = -halfWorld + 28; x < halfWorld - 28; x += blockSize) {
                 for (let z = -halfWorld + 28; z < halfWorld - 28; z += blockSize) {
-                    // Central Plaza spawn area clear zone
                     if (Math.abs(x) < 28 && Math.abs(z) < 28) continue;
 
                     if (Math.random() > 0.4) {
-                        // DESTRUCTIBLE BUILDING
                         const h = 7 + Math.random() * 12;
                         const w = 9 + Math.random() * 2;
                         const d = 9 + Math.random() * 2;
@@ -1016,7 +1067,6 @@
                         bMesh.receiveShadow = true;
                         scene.add(bMesh);
 
-                        // HVAC Roof Top
                         const hvacGeo = new THREE.BoxGeometry(1.8, 0.8, 1.8);
                         const hvac = new THREE.Mesh(hvacGeo, new THREE.MeshStandardMaterial({ color: 0x64748b }));
                         hvac.position.set(x + 1, h + 0.4, z - 1);
@@ -1034,7 +1084,6 @@
                             collapsed: false
                         });
                     } else {
-                        // DESTRUCTIBLE PARK TREES
                         for (let t = 0; t < 2; t++) {
                             const tx = x + (Math.random() - 0.5) * 10;
                             const tz = z + (Math.random() - 0.5) * 10;
@@ -1044,16 +1093,14 @@
                 }
             }
 
-            // Spawn Drivable Vehicles on wide roads
-            const carColors = [0xef4444, 0x3b82f6, 0xeab308, 0x10b981, 0x8b5cf6];
-            for (let i = 0; i < 6; i++) {
+            const vehicleTypes = ['car', 'sports', 'tank', 'bike', 'car', 'sports'];
+            for (let i = 0; i < vehicleTypes.length; i++) {
                 const rx = (Math.random() - 0.5) * (CONFIG.WORLD_SIZE - 50);
                 const rz = (Math.random() - 0.5) * (CONFIG.WORLD_SIZE - 50);
-                entities.vehicles.push(new Vehicle(rx, rz, carColors[i % carColors.length]));
+                entities.vehicles.push(new Vehicle(rx, rz, vehicleTypes[i]));
             }
         }
 
-        // DESTRUCTIBLE TREE CREATION
         function createTree(x, z) {
             const treeGroup = new THREE.Group();
             
@@ -1138,6 +1185,7 @@
             let color = 0x22c55e;
             if (type === 'wood') color = 0xd97706;
             if (type === 'metal') color = 0x94a3b8;
+            if (type === 'ammo') color = 0x3b82f6;
 
             const geo = new THREE.BoxGeometry(0.5, 0.5, 0.5);
             const mat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.2 });
@@ -1150,7 +1198,7 @@
 
             entities.pickups.push({
                 type: type,
-                amount: type === 'cash' ? 25 : 10,
+                amount: type === 'cash' ? 25 : (type === 'ammo' ? 50 : 10),
                 mesh: group,
                 x: x, z: z,
                 radius: 1.2
@@ -1172,11 +1220,12 @@
 
             if (enemy.hp <= 0) {
                 spawnPickup(enemy.mesh.position.x, enemy.mesh.position.z, 'cash');
+                spawnPickup(enemy.mesh.position.x, enemy.mesh.position.z, 'ammo');
                 if (Math.random() > 0.5) spawnPickup(enemy.mesh.position.x, enemy.mesh.position.z, 'wood');
                 if (Math.random() > 0.5) spawnPickup(enemy.mesh.position.x, enemy.mesh.position.z, 'metal');
 
                 state.kills++;
-                state.score += 100;
+                state.score += enemy.isBoss ? 500 : 100;
                 updateHUD();
 
                 scene.remove(enemy.mesh);
@@ -1185,7 +1234,6 @@
             }
         }
 
-        // DESTRUCTIBLE BUILDINGS & TREES DAMAGE SYSTEM
         function damageStructureAt(x, z, damageAmount) {
             for (let i = entities.structures.length - 1; i >= 0; i--) {
                 const s = entities.structures[i];
@@ -1201,30 +1249,28 @@
 
                     if (s.isBuilding) {
                         spawnDamageText(`-${damageAmount}`, new THREE.Vector3(sx, s.height * 0.8, sz), 'text-slate-300');
-                        spawnParticleBurst(new THREE.Vector3(x, 1, z), 0x64748b, 8); // Concrete Dust
+                        spawnParticleBurst(new THREE.Vector3(x, 1, z), 0x64748b, 8);
 
-                        // Collapse Building into Rubble upon destruction
                         if (s.hp <= 0 && !s.collapsed) {
                             s.collapsed = true;
-                            s.radius = 0.1; // Disable collision radius
+                            s.radius = 0.1;
 
-                            // Collapse scale animation
                             s.mesh.scale.set(1.0, 0.1, 1.0);
                             s.mesh.position.y = 0.3;
                             s.mesh.material.color.setHex(0x1e293b);
                             if (s.hvacMesh) scene.remove(s.hvacMesh);
 
-                            // Drop Metal & Cash Pickups
                             spawnPickup(sx - 1, sz - 1, 'metal');
                             spawnPickup(sx + 1, sz + 1, 'metal');
                             spawnPickup(sx, sz, 'cash');
+                            spawnPickup(sx, sz, 'ammo');
 
                             spawnDamageText("BUILDING COLLAPSED!", new THREE.Vector3(sx, 2, sz), 'text-red-400 font-extrabold');
                             triggerExplosion(sx, sz, 5.0, 50);
                         }
                     } else if (s.isTree) {
                         spawnDamageText(`-${damageAmount}`, new THREE.Vector3(sx, 2, sz), 'text-emerald-400');
-                        spawnParticleBurst(new THREE.Vector3(sx, 2, sz), 0x15803d, 8); // Leaf burst
+                        spawnParticleBurst(new THREE.Vector3(sx, 2, sz), 0x15803d, 8);
 
                         if (s.hp <= 0) {
                             spawnPickup(sx, sz, 'wood');
@@ -1232,7 +1278,7 @@
                             scene.remove(s.mesh);
                             entities.structures.splice(i, 1);
                         }
-                    } else { // Sandbox barricade, barrel, turret
+                    } else {
                         spawnDamageText(`-${damageAmount}`, s.mesh.position, 'text-amber-400');
                         spawnParticleBurst(s.mesh.position, 0xd97706, 6);
 
@@ -1255,7 +1301,6 @@
 
             spawnParticleBurst(new THREE.Vector3(x, 1, z), 0xf97316, 18);
 
-            // Damage Enemies
             entities.enemies.slice().forEach(enemy => {
                 const dist = Math.hypot(enemy.mesh.position.x - x, enemy.mesh.position.z - z);
                 if (dist <= radius) {
@@ -1264,7 +1309,6 @@
                 }
             });
 
-            // Damage Buildings, Trees & Sandbox Items
             entities.structures.slice().forEach(s => {
                 const sx = s.mesh ? s.mesh.position.x : s.x;
                 const sz = s.mesh ? s.mesh.position.z : s.z;
@@ -1275,7 +1319,6 @@
                 }
             });
 
-            // Damage Player
             const playerDist = Math.hypot(entities.player.mesh.position.x - x, entities.player.mesh.position.z - z);
             if (playerDist <= radius) {
                 const dmg = Math.floor((1 - playerDist / radius) * (maxDamage * 0.5));
@@ -1290,7 +1333,10 @@
             if (now - state.lastFireTime < item.cooldown) return;
 
             if (item.type === 'weapon') {
-                if (item.ammo <= 0) return;
+                if (item.ammo <= 0) {
+                    spawnDamageText("OUT OF AMMO!", entities.player.mesh.position, 'text-red-500');
+                    return;
+                }
                 if (item.ammo !== Infinity) item.ammo--;
 
                 state.lastFireTime = now;
@@ -1319,7 +1365,8 @@
                         speed: item.speed,
                         damage: item.damage,
                         radius: item.radius,
-                        lifetime: 2.5
+                        lifetime: 2.5,
+                        owner: null
                     });
                 } else {
                     const bMesh = createBulletMesh(item.id === 'plasma' ? 0x06b6d4 : 0xfacc15, item.radius * 0.8);
@@ -1330,7 +1377,8 @@
                         speed: item.speed,
                         damage: item.damage,
                         radius: item.radius,
-                        lifetime: 1.5
+                        lifetime: 1.5,
+                        owner: null
                     });
                 }
 
@@ -1431,30 +1479,34 @@
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             const pPos = entities.player.mesh.position;
+            const pAngle = entities.player.mesh.rotation.y;
 
-            // Draw Enemies
-            ctx.fillStyle = '#ef4444';
+            ctx.save();
+            ctx.translate(center, center);
+            ctx.rotate(-pAngle);
+
             entities.enemies.forEach(e => {
                 const dx = (e.mesh.position.x - pPos.x) * scale;
                 const dz = (e.mesh.position.z - pPos.z) * scale;
                 if (Math.hypot(dx, dz) < center - 4) {
+                    ctx.fillStyle = e.isBoss ? '#ef4444' : (e.faction === 'police' ? '#3b82f6' : '#f59e0b');
                     ctx.beginPath();
-                    ctx.arc(center + dx, center + dz, 3, 0, Math.PI * 2);
+                    ctx.arc(dx, dz, e.isBoss ? 5 : 3, 0, Math.PI * 2);
                     ctx.fill();
                 }
             });
 
-            // Draw Vehicles
             ctx.fillStyle = '#f59e0b';
             entities.vehicles.forEach(v => {
                 const dx = (v.mesh.position.x - pPos.x) * scale;
                 const dz = (v.mesh.position.z - pPos.z) * scale;
                 if (Math.hypot(dx, dz) < center - 4) {
-                    ctx.fillRect(center + dx - 3, center + dz - 3, 6, 6);
+                    ctx.fillRect(dx - 3, dz - 3, 6, 6);
                 }
             });
 
-            // Player Icon
+            ctx.restore();
+
             ctx.fillStyle = '#3b82f6';
             ctx.strokeStyle = '#ffffff';
             ctx.lineWidth = 2;
@@ -1531,7 +1583,6 @@
                 updateHUD();
             });
 
-            // HUD Listeners
             document.getElementById('btn-pause').addEventListener('click', togglePause);
             document.getElementById('pause-close').addEventListener('click', togglePause);
             document.getElementById('btn-resume').addEventListener('click', togglePause);
@@ -1565,6 +1616,7 @@
         function toggleVehicleEnterExit() {
             if (entities.player.inVehicle) {
                 const car = entities.player.inVehicle;
+                car.setHeadlights(false);
                 car.driver = null;
                 entities.player.mesh.position.set(car.mesh.position.x + 2.5, 0, car.mesh.position.z);
                 entities.player.inVehicle = null;
@@ -1576,6 +1628,7 @@
                     if (dist < 3.5) {
                         entities.player.inVehicle = car;
                         car.driver = entities.player;
+                        car.setHeadlights(true);
                         updateHUD();
                         break;
                     }
@@ -1643,6 +1696,7 @@
                 if (item.type === 'weapon' && item.maxAmmo !== Infinity) {
                     item.ammo = item.maxAmmo;
                     updateHUD();
+                    spawnDamageText("RELOADED!", entities.player.mesh.position, 'text-blue-400');
                 }
             });
         }
@@ -1737,7 +1791,6 @@
 
             camera.lookAt(targetPos.x, 0, targetPos.z);
 
-            // Enemy Spawner
             state.enemySpawnTimer += dt;
             if (state.enemySpawnTimer >= CONFIG.SPAWN_ENEMY_INTERVAL && entities.enemies.length < CONFIG.MAX_ENEMIES) {
                 state.enemySpawnTimer = 0;
@@ -1745,7 +1798,14 @@
                 const dist = 36 + Math.random() * 10;
                 const ex = targetPos.x + Math.sin(angle) * dist;
                 const ez = targetPos.z + Math.cos(angle) * dist;
-                entities.enemies.push(new Enemy(ex, ez));
+
+                const isBossSpawn = state.kills > 0 && state.kills % 10 === 0 && !entities.enemies.some(e => e.isBoss);
+                const faction = Math.random() > 0.6 ? 'police' : (Math.random() > 0.4 ? 'zombie' : 'gang');
+                
+                entities.enemies.push(new Enemy(ex, ez, isBossSpawn, faction));
+                if (isBossSpawn) {
+                    spawnDamageText("WARNING: MOB BOSS SPAWNED!", targetPos, 'text-red-500 font-black text-2xl');
+                }
             }
 
             entities.enemies.forEach(e => e.update(dt, targetPos));
@@ -1754,7 +1814,6 @@
                 if (s.update) s.update(dt);
             });
 
-            // BULLET PHYSICS & UNIFIED IMPACT CHECK AGAINST EVERYTHING
             for (let i = entities.bullets.length - 1; i >= 0; i--) {
                 const b = entities.bullets[i];
                 b.lifetime -= dt;
@@ -1764,7 +1823,6 @@
 
                 let hitRegistered = false;
 
-                // 1. Check Enemies Hit
                 for (let j = entities.enemies.length - 1; j >= 0; j--) {
                     const enemy = entities.enemies[j];
                     const dist = Math.hypot(b.pos.x - enemy.mesh.position.x, b.pos.z - enemy.mesh.position.z);
@@ -1780,10 +1838,11 @@
                     }
                 }
 
-                // 2. Check Buildings, Trees & Structures Hit
                 if (!hitRegistered) {
                     for (let s of entities.structures) {
                         if (s.collapsed) continue;
+                        if (b.owner === s) continue;
+                        
                         const sx = s.mesh ? s.mesh.position.x : s.x;
                         const sz = s.mesh ? s.mesh.position.z : s.z;
                         const dist = Math.hypot(b.pos.x - sx, b.pos.z - sz);
@@ -1809,7 +1868,6 @@
                 }
             }
 
-            // Pickups Magnet Magnetic Collection
             for (let i = entities.pickups.length - 1; i >= 0; i--) {
                 const p = entities.pickups[i];
                 p.mesh.rotation.y += dt * 3;
@@ -1820,6 +1878,13 @@
                     if (p.type === 'cash') state.resources.cash += p.amount;
                     if (p.type === 'wood') state.resources.wood += p.amount;
                     if (p.type === 'metal') state.resources.metal += p.amount;
+                    if (p.type === 'ammo') {
+                        ITEMS.forEach(item => {
+                            if (item.type === 'weapon' && item.maxAmmo !== Infinity) {
+                                item.ammo = Math.min(item.maxAmmo, item.ammo + p.amount);
+                            }
+                        });
+                    }
 
                     spawnDamageText(`+${p.amount} ${p.type.toUpperCase()}`, targetPos, 'text-emerald-400');
                     updateHUD();
@@ -1829,7 +1894,6 @@
                 }
             }
 
-            // Particles Update
             for (let i = entities.particles.length - 1; i >= 0; i--) {
                 const pt = entities.particles[i];
                 pt.lifetime -= dt;
