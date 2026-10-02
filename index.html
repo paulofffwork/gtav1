@@ -1283,11 +1283,18 @@
                         spawnParticleBurst(s.mesh.position, 0xd97706, 6);
 
                         if (s.hp <= 0) {
-                            if (s.type === 'barrel') {
-                                triggerExplosion(s.mesh.position.x, s.mesh.position.z, 8.0, 180);
-                            }
+                            // FIXED: Cache position, remove from structures array and scene first 
+                            // to prevent infinite recursion/freezing during TNT chain explosions
+                            const isBarrel = (s.type === 'barrel');
+                            const bx = s.mesh.position.x;
+                            const bz = s.mesh.position.z;
+
                             scene.remove(s.mesh);
                             entities.structures.splice(i, 1);
+
+                            if (isBarrel) {
+                                triggerExplosion(bx, bz, 8.0, 180);
+                            }
                         }
                     }
                     break;
