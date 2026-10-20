@@ -2,7 +2,7 @@
 <html lang="en" class="h-full select-none">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>GTA Craft - 3D Top-Down Sandbox Game</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,6 +22,7 @@
             -webkit-user-select: none;
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background-color: #0d1117;
+            touch-action: none;
         }
 
         #game-canvas {
@@ -109,67 +110,67 @@
     <div id="damage-container" class="absolute inset-0 pointer-events-none overflow-hidden z-30"></div>
 
     <!-- HUD OVERLAY -->
-    <div id="hud-overlay" class="absolute inset-0 pointer-events-none flex flex-col justify-between p-4 z-20">
+    <div id="hud-overlay" class="absolute inset-0 pointer-events-none flex flex-col justify-between p-2 sm:p-4 z-20">
         
         <!-- TOP HEADER BAR -->
-        <div class="flex justify-between items-start w-full">
+        <div class="flex justify-between items-start w-full gap-2">
             <!-- Player Health & Weapon Status -->
-            <div class="hud-panel p-3 rounded-2xl flex flex-col gap-2 pointer-events-auto min-w-[220px]">
+            <div class="hud-panel p-2 sm:p-3 rounded-xl sm:rounded-2xl flex flex-col gap-1.5 sm:gap-2 pointer-events-auto min-w-[150px] sm:min-w-[220px]">
                 <!-- Health Bar -->
                 <div>
-                    <div class="flex justify-between text-xs font-bold mb-1 text-gray-300">
+                    <div class="flex justify-between text-[10px] sm:text-xs font-bold mb-1 text-gray-300">
                         <span><i class="fa-solid fa-heart text-red-500 mr-1"></i> HEALTH</span>
                         <span id="hp-text">100 / 100</span>
                     </div>
-                    <div class="w-full bg-gray-800 rounded-full h-3 overflow-hidden border border-gray-700">
+                    <div class="w-full bg-gray-800 rounded-full h-2 sm:h-3 overflow-hidden border border-gray-700">
                         <div id="hp-bar" class="bg-gradient-to-r from-red-600 to-emerald-500 h-full transition-all duration-200" style="width: 100%;"></div>
                     </div>
                 </div>
 
                 <!-- Ammo & Vehicle Status -->
-                <div class="flex justify-between items-center bg-gray-900/60 p-2 rounded-xl border border-gray-800">
-                    <div class="flex items-center gap-2">
-                        <span id="weapon-icon" class="text-yellow-400 text-lg"><i class="fa-solid fa-gun"></i></span>
+                <div class="flex justify-between items-center bg-gray-900/60 p-1.5 sm:p-2 rounded-lg sm:rounded-xl border border-gray-800">
+                    <div class="flex items-center gap-1.5 sm:gap-2">
+                        <span id="weapon-icon" class="text-yellow-400 text-sm sm:text-lg"><i class="fa-solid fa-gun"></i></span>
                         <div>
-                            <div id="weapon-name" class="text-xs font-extrabold text-white tracking-wider">PISTOL</div>
-                            <div id="ammo-text" class="text-xs text-gray-400 font-mono">∞ / INF</div>
+                            <div id="weapon-name" class="text-[10px] sm:text-xs font-extrabold text-white tracking-wider">PISTOL</div>
+                            <div id="ammo-text" class="text-[9px] sm:text-xs text-gray-400 font-mono">∞ / INF</div>
                         </div>
                     </div>
-                    <span id="vehicle-indicator" class="hidden text-xs bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded-full animate-pulse">
+                    <span id="vehicle-indicator" class="hidden text-[9px] sm:text-xs bg-amber-500/20 text-amber-300 border border-amber-500/40 px-1.5 sm:px-2 py-0.5 rounded-full animate-pulse">
                         <i class="fa-solid fa-car mr-1"></i> DRIVING
                     </span>
                 </div>
             </div>
 
             <!-- Resources & Kills Counter -->
-            <div class="hud-panel p-3 rounded-2xl flex items-center gap-4 pointer-events-auto">
-                <div class="flex items-center gap-1.5 text-emerald-400 font-bold text-sm">
+            <div class="hud-panel p-2 sm:p-3 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-4 pointer-events-auto text-xs sm:text-sm">
+                <div class="flex items-center gap-1 text-emerald-400 font-bold">
                     <i class="fa-solid fa-money-bill-wave"></i>
                     <span id="cash-count">150</span>
                 </div>
-                <div class="h-4 w-px bg-gray-700"></div>
-                <div class="flex items-center gap-1.5 text-amber-600 font-bold text-sm">
+                <div class="h-3 sm:h-4 w-px bg-gray-700"></div>
+                <div class="flex items-center gap-1 text-amber-600 font-bold">
                     <i class="fa-solid fa-tree"></i>
                     <span id="wood-count">50</span>
                 </div>
-                <div class="h-4 w-px bg-gray-700"></div>
-                <div class="flex items-center gap-1.5 text-slate-300 font-bold text-sm">
+                <div class="h-3 sm:h-4 w-px bg-gray-700"></div>
+                <div class="flex items-center gap-1 text-slate-300 font-bold">
                     <i class="fa-solid fa-cubes"></i>
                     <span id="metal-count">35</span>
                 </div>
-                <div class="h-4 w-px bg-gray-700"></div>
-                <div class="flex items-center gap-1.5 text-red-400 font-bold text-sm">
+                <div class="h-3 sm:h-4 w-px bg-gray-700"></div>
+                <div class="flex items-center gap-1 text-red-400 font-bold">
                     <i class="fa-solid fa-skull"></i>
                     <span id="kill-count">0</span>
                 </div>
             </div>
 
             <!-- Pause Button & Minimap -->
-            <div class="flex items-start gap-3 pointer-events-auto">
-                <button id="btn-pause" class="hud-panel hud-btn w-12 h-12 rounded-2xl flex items-center justify-center text-xl text-gray-200 border border-gray-700 hover:text-white hover:border-yellow-400">
+            <div class="flex items-start gap-2 sm:gap-3 pointer-events-auto">
+                <button id="btn-pause" class="hud-panel hud-btn w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center text-lg sm:text-xl text-gray-200 border border-gray-700 hover:text-white hover:border-yellow-400">
                     <i class="fa-solid fa-pause"></i>
                 </button>
-                <div class="relative">
+                <div class="relative hidden sm:block">
                     <canvas id="minimap-canvas" width="105" height="105"></canvas>
                     <div class="absolute inset-0 rounded-full border border-yellow-500/20 pointer-events-none"></div>
                 </div>
@@ -177,33 +178,37 @@
         </div>
 
         <!-- BOTTOM HOTBAR / SELECTION SLOTS -->
-        <div class="flex flex-col items-center gap-2 pointer-events-auto w-full max-w-2xl mx-auto mb-2">
-            <div id="action-prompt" class="hud-panel px-3 py-1 rounded-full text-xs font-semibold text-yellow-300 tracking-wide opacity-0 transition-opacity">
-                Press [E] to Enter Vehicle
+        <div class="flex flex-col items-center gap-1.5 sm:gap-2 pointer-events-auto w-full max-w-2xl mx-auto mb-1 sm:mb-2">
+            <div id="action-prompt" class="hud-panel px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold text-yellow-300 tracking-wide opacity-0 transition-opacity">
+                Press [E] or Car Button to Enter
             </div>
-            <div id="hotbar" class="hud-panel p-2 rounded-2xl flex items-center gap-1.5 overflow-x-auto max-w-full">
+            <div id="hotbar" class="hud-panel p-1.5 sm:p-2 rounded-xl sm:rounded-2xl flex items-center gap-1 sm:gap-1.5 overflow-x-auto max-w-full">
                 <!-- Populated by JS -->
             </div>
         </div>
     </div>
 
     <!-- MOBILE TOUCH CONTROLS OVERLAY -->
-    <div id="mobile-controls" class="absolute inset-0 pointer-events-none z-20 hidden md:hidden">
-        <div id="joystick-left" class="joystick-zone absolute bottom-6 left-6 w-32 h-32 rounded-full bg-white/10 border border-white/20 pointer-events-auto flex items-center justify-center">
-            <div id="joystick-left-knob" class="w-12 h-12 rounded-full bg-yellow-400/80 shadow-lg transform translate-x-0 translate-y-0"></div>
+    <div id="mobile-controls" class="absolute inset-0 pointer-events-none z-20 hidden">
+        <!-- Movement Joystick (Left) -->
+        <div id="joystick-left" class="joystick-zone absolute bottom-6 left-6 w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-white/10 border border-white/20 pointer-events-auto flex items-center justify-center touch-none">
+            <div id="joystick-left-knob" class="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-yellow-400/80 shadow-lg transform translate-x-0 translate-y-0 pointer-events-none"></div>
         </div>
 
-        <div class="absolute bottom-6 right-6 flex flex-col gap-3 pointer-events-auto">
-            <div class="flex gap-2 justify-end">
-                <button id="mobile-btn-car" class="w-12 h-12 rounded-full bg-amber-600/80 border border-amber-400 text-white flex items-center justify-center active:scale-95 text-lg">
-                    <i class="fa-solid fa-car"></i>
-                </button>
-                <button id="mobile-btn-reload" class="w-12 h-12 rounded-full bg-blue-600/80 border border-blue-400 text-white flex items-center justify-center active:scale-95 text-lg">
-                    <i class="fa-solid fa-rotate-right"></i>
-                </button>
-            </div>
-            <button id="mobile-btn-fire" class="w-20 h-20 rounded-full bg-red-600/80 border-2 border-red-400 text-white flex items-center justify-center active:scale-95 text-2xl font-bold shadow-xl">
+        <!-- Aim & Fire Joystick (Right) -->
+        <div id="joystick-right" class="joystick-zone absolute bottom-6 right-6 w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-red-500/10 border-2 border-red-500/30 pointer-events-auto flex items-center justify-center touch-none">
+            <div id="joystick-right-knob" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-red-600/80 shadow-xl border border-red-300 flex items-center justify-center text-white text-lg pointer-events-none">
                 <i class="fa-solid fa-crosshairs"></i>
+            </div>
+        </div>
+
+        <!-- Mobile Action Buttons Stack (Right Side) -->
+        <div class="absolute bottom-40 right-6 flex flex-col gap-3 pointer-events-auto">
+            <button id="mobile-btn-car" class="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-amber-600/80 border border-amber-400 text-white flex items-center justify-center active:scale-95 text-base sm:text-lg shadow-md">
+                <i class="fa-solid fa-car"></i>
+            </button>
+            <button id="mobile-btn-reload" class="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-blue-600/80 border border-blue-400 text-white flex items-center justify-center active:scale-95 text-base sm:text-lg shadow-md">
+                <i class="fa-solid fa-rotate-right"></i>
             </button>
         </div>
     </div>
@@ -229,7 +234,7 @@
             <!-- Modal Nav Tabs -->
             <div class="flex border-b border-gray-800 mb-4 gap-2">
                 <button id="tab-btn-controls" class="px-4 py-2 text-sm font-bold border-b-2 border-yellow-400 text-yellow-400">Controls</button>
-                <button id="tab-btn-deploy" class="px-4 py-2 text-sm font-bold border-b-2 border-transparent text-gray-400 hover:text-white">GitHub Pages Guide[cite: 1]</button>
+                <button id="tab-btn-deploy" class="px-4 py-2 text-sm font-bold border-b-2 border-transparent text-gray-400 hover:text-white">GitHub Pages Guide</button>
                 <button id="tab-btn-settings" class="px-4 py-2 text-sm font-bold border-b-2 border-transparent text-gray-400 hover:text-white">Audio & Settings</button>
             </div>
 
@@ -240,27 +245,19 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                         <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
                             <span class="text-gray-300"><i class="fa-solid fa-keyboard mr-2 text-yellow-400"></i> Move Player / Drive</span>
-                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">W A S D / Arrows</kbd>
+                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">WASD / Left Stick</kbd>
                         </div>
                         <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
-                            <span class="text-gray-300"><i class="fa-solid fa-mouse mr-2 text-yellow-400"></i> Aim & Shoot / Build</span>
-                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Mouse Left Click</kbd>
+                            <span class="text-gray-300"><i class="fa-solid fa-crosshairs mr-2 text-yellow-400"></i> Aim & Shoot / Build</span>
+                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Mouse Left / Right Stick</kbd>
                         </div>
                         <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
                             <span class="text-gray-300"><i class="fa-solid fa-car mr-2 text-yellow-400"></i> Enter / Exit Vehicle</span>
-                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Key [E]</kbd>
+                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Key [E] / Car Btn</kbd>
                         </div>
                         <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
                             <span class="text-gray-300"><i class="fa-solid fa-rotate-right mr-2 text-yellow-400"></i> Reload Weapon</span>
-                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Key [R]</kbd>
-                        </div>
-                        <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
-                            <span class="text-gray-300"><i class="fa-solid fa-bolt mr-2 text-yellow-400"></i> Sprint / Nitro Boost</span>
-                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Shift Key</kbd>
-                        </div>
-                        <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
-                            <span class="text-gray-300"><i class="fa-solid fa-layer-group mr-2 text-yellow-400"></i> Hotbar Items</span>
-                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Keys [1 - 9] / Scroll</kbd>
+                            <kbd class="px-2 py-1 bg-gray-800 border border-gray-700 rounded text-xs font-mono text-yellow-300">Key [R] / Reload Btn</kbd>
                         </div>
                     </div>
                 </div>
@@ -330,7 +327,7 @@
     </div>
 
     <script>
-        // Web Audio Synthesizer Engine (Optimized to pre-cache explosion noise buffer and prevent frame drops)
+        // Web Audio Synthesizer Engine
         class SoundEngine {
             constructor() {
                 this.ctx = null;
@@ -344,7 +341,6 @@
                         const AudioContext = window.AudioContext || window.webkitAudioContext;
                         if (AudioContext) {
                             this.ctx = new AudioContext();
-                            // Pre-generate noise buffer once to prevent audio generation lag during explosion
                             const bufferSize = this.ctx.sampleRate * 0.35;
                             this.explosionBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
                             const data = this.explosionBuffer.getChannelData(0);
@@ -541,12 +537,17 @@
             enemySpawnTimer: 0,
             keys: {},
             mouse: { x: 0, y: 0, worldPos: new THREE.Vector3(), down: false },
-            touch: { moveX: 0, moveY: 0, active: false }
+            touch: { 
+                moveX: 0, moveY: 0, moveActive: false,
+                aimX: 0, aimY: 0, aimActive: false,
+                isMobile: false
+            }
         };
 
         // Three.js Globals & Entity Repositories
         let scene, camera, renderer, clock;
         let groundPlane, raycaster;
+        let targetCrosshair;
 
         const entities = {
             player: null,
@@ -608,7 +609,7 @@
                 if (state.keys['KeyA'] || state.keys['ArrowLeft']) moveX -= 1;
                 if (state.keys['KeyD'] || state.keys['ArrowRight']) moveX += 1;
 
-                if (state.touch.active) {
+                if (state.touch.moveActive) {
                     moveX = state.touch.moveX;
                     moveZ = state.touch.moveY;
                 }
@@ -633,9 +634,16 @@
                     }
                 }
 
-                const dx = state.mouse.worldPos.x - this.mesh.position.x;
-                const dz = state.mouse.worldPos.z - this.mesh.position.z;
-                this.mesh.rotation.y = Math.atan2(dx, dz);
+                // Handle rotation based on input type
+                if (state.touch.aimActive) {
+                    this.mesh.rotation.y = Math.atan2(state.touch.aimX, state.touch.aimY);
+                } else if (state.touch.moveActive) {
+                    this.mesh.rotation.y = Math.atan2(moveX, moveZ);
+                } else {
+                    const dx = state.mouse.worldPos.x - this.mesh.position.x;
+                    const dz = state.mouse.worldPos.z - this.mesh.position.z;
+                    this.mesh.rotation.y = Math.atan2(dx, dz);
+                }
             }
 
             takeDamage(amount) {
@@ -714,7 +722,7 @@
                     this.mesh.add(w);
                 });
 
-                // HEADLIGHTS IMPLEMENTATION
+                // Headlights
                 this.lights = [];
                 const headlightGeo = new THREE.SphereGeometry(0.15, 8, 8);
                 const headlightMat = new THREE.MeshBasicMaterial({ color: 0xffffee });
@@ -746,9 +754,9 @@
                 if (this.driver) {
                     let boost = (state.keys['ShiftLeft'] || state.keys['ShiftRight']) ? 1.6 : 1.0;
 
-                    if (state.keys['KeyW'] || state.keys['ArrowUp'] || (state.touch.active && state.touch.moveY < -0.2)) {
+                    if (state.keys['KeyW'] || state.keys['ArrowUp'] || (state.touch.moveActive && state.touch.moveY < -0.2)) {
                         this.speed = Math.min(this.maxSpeed * boost, this.speed + this.accel * dt);
-                    } else if (state.keys['KeyS'] || state.keys['ArrowDown'] || (state.touch.active && state.touch.moveY > 0.2)) {
+                    } else if (state.keys['KeyS'] || state.keys['ArrowDown'] || (state.touch.moveActive && state.touch.moveY > 0.2)) {
                         this.speed = Math.max(-this.maxSpeed * 0.4, this.speed - this.accel * dt);
                     } else {
                         this.speed *= this.friction;
@@ -756,10 +764,10 @@
 
                     if (Math.abs(this.speed) > 0.5) {
                         const dir = this.speed > 0 ? 1 : -1;
-                        if (state.keys['KeyA'] || state.keys['ArrowLeft'] || (state.touch.active && state.touch.moveX < -0.2)) {
+                        if (state.keys['KeyA'] || state.keys['ArrowLeft'] || (state.touch.moveActive && state.touch.moveX < -0.2)) {
                             this.angle += this.turnSpeed * dt * dir;
                         }
-                        if (state.keys['KeyD'] || state.keys['ArrowRight'] || (state.touch.active && state.touch.moveX > 0.2)) {
+                        if (state.keys['KeyD'] || state.keys['ArrowRight'] || (state.touch.moveActive && state.touch.moveX > 0.2)) {
                             this.angle -= this.turnSpeed * dt * dir;
                         }
                     }
@@ -1283,18 +1291,11 @@
                         spawnParticleBurst(s.mesh.position, 0xd97706, 6);
 
                         if (s.hp <= 0) {
-                            // FIXED: Cache position, remove from structures array and scene first 
-                            // to prevent infinite recursion/freezing during TNT chain explosions
-                            const isBarrel = (s.type === 'barrel');
-                            const bx = s.mesh.position.x;
-                            const bz = s.mesh.position.z;
-
+                            if (s.type === 'barrel') {
+                                triggerExplosion(s.mesh.position.x, s.mesh.position.z, 8.0, 180);
+                            }
                             scene.remove(s.mesh);
                             entities.structures.splice(i, 1);
-
-                            if (isBarrel) {
-                                triggerExplosion(bx, bz, 8.0, 180);
-                            }
                         }
                     }
                     break;
@@ -1353,7 +1354,13 @@
                     entities.player.inVehicle.mesh.position.clone().add(new THREE.Vector3(0, 1.2, 0)) :
                     entities.player.mesh.position.clone().add(new THREE.Vector3(0, 1.0, 0));
 
-                const targetPos = state.mouse.worldPos.clone();
+                let targetPos;
+                if (state.touch.aimActive || state.touch.isMobile) {
+                    targetPos = targetCrosshair.position.clone();
+                } else {
+                    targetPos = state.mouse.worldPos.clone();
+                }
+
                 const dir = new THREE.Vector3().subVectors(targetPos, startPos).setY(0).normalize();
 
                 if (item.id === 'rocket') {
@@ -1402,7 +1409,7 @@
                     state.resources.metal -= cost.metal;
                     state.resources.cash -= cost.cash;
 
-                    const buildPos = state.mouse.worldPos.clone();
+                    const buildPos = (state.touch.aimActive || state.touch.isMobile) ? targetCrosshair.position.clone() : state.mouse.worldPos.clone();
                     const newStruct = new Structure(item.id, buildPos.x, buildPos.z);
                     entities.structures.push(newStruct);
 
@@ -1433,12 +1440,12 @@
 
             ITEMS.forEach((item, index) => {
                 const slot = document.createElement('button');
-                slot.className = `hud-btn w-12 h-12 rounded-xl flex flex-col items-center justify-center border font-bold text-xs relative ${
+                slot.className = `hud-btn w-9 h-9 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex flex-col items-center justify-center border font-bold text-[10px] sm:text-xs relative shrink-0 ${
                     index === state.selectedItemIndex ? 'bg-yellow-500/20 border-yellow-400 text-yellow-300 scale-105' : 'bg-gray-900/80 border-gray-700 text-gray-400'
                 }`;
                 slot.innerHTML = `
-                    <i class="fa-solid ${item.icon} text-base mb-0.5"></i>
-                    <span class="text-[9px] font-mono">${index + 1}</span>
+                    <i class="fa-solid ${item.icon} text-xs sm:text-base mb-0.5"></i>
+                    <span class="text-[8px] sm:text-[9px] font-mono">${index + 1}</span>
                 `;
                 slot.addEventListener('click', () => {
                     state.selectedItemIndex = index;
@@ -1476,10 +1483,29 @@
             } else {
                 vehicleIndicator.classList.add('hidden');
             }
+
+            // Check proximity to vehicle for action prompt
+            const actionPrompt = document.getElementById('action-prompt');
+            const pPos = entities.player.mesh.position;
+            let nearCar = false;
+            for (const car of entities.vehicles) {
+                if (Math.hypot(car.mesh.position.x - pPos.x, car.mesh.position.z - pPos.z) < 3.5) {
+                    nearCar = true;
+                    break;
+                }
+            }
+            if (nearCar || entities.player.inVehicle) {
+                actionPrompt.style.opacity = '1';
+                actionPrompt.innerText = entities.player.inVehicle ? "Press [E] or Car Btn to Exit" : "Press [E] or Car Btn to Enter";
+            } else {
+                actionPrompt.style.opacity = '0';
+            }
         }
 
         function renderMinimap() {
             const canvas = document.getElementById('minimap-canvas');
+            if (!canvas || canvas.offsetParent === null) return;
+            
             const ctx = canvas.getContext('2d');
             const center = canvas.width / 2;
             const scale = 0.55;
@@ -1614,9 +1640,11 @@
                 e.target.className = audio.enabled ? "px-4 py-2 rounded-xl bg-emerald-600 font-bold text-sm text-white" : "px-4 py-2 rounded-xl bg-red-600 font-bold text-sm text-white";
             });
 
-            if ('ontouchstart' in window) {
+            // Touch capability detection & mobile control overlay trigger
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                state.touch.isMobile = true;
                 document.getElementById('mobile-controls').classList.remove('hidden');
-                setupMobileJoystick();
+                setupMobileControls();
             }
         }
 
@@ -1643,59 +1671,124 @@
             }
         }
 
-        function setupMobileJoystick() {
-            const stick = document.getElementById('joystick-left');
-            const knob = document.getElementById('joystick-left-knob');
-            let touchId = null;
+        function setupMobileControls() {
+            // Movement Joystick (Left)
+            const leftStick = document.getElementById('joystick-left');
+            const leftKnob = document.getElementById('joystick-left-knob');
+            let leftTouchId = null;
 
-            stick.addEventListener('touchstart', (e) => {
+            leftStick.addEventListener('touchstart', (e) => {
+                e.preventDefault();
                 const touch = e.changedTouches[0];
-                touchId = touch.identifier;
-                state.touch.active = true;
-            });
+                leftTouchId = touch.identifier;
+                state.touch.moveActive = true;
+                updateLeftStick(touch);
+            }, { passive: false });
 
-            stick.addEventListener('touchmove', (e) => {
+            leftStick.addEventListener('touchmove', (e) => {
+                e.preventDefault();
                 for (let touch of e.changedTouches) {
-                    if (touch.identifier === touchId) {
-                        const rect = stick.getBoundingClientRect();
-                        const centerX = rect.left + rect.width / 2;
-                        const centerY = rect.top + rect.height / 2;
-
-                        let dx = (touch.clientX - centerX) / (rect.width / 2);
-                        let dy = (touch.clientY - centerY) / (rect.height / 2);
-
-                        const dist = Math.hypot(dx, dy);
-                        if (dist > 1) {
-                            dx /= dist;
-                            dy /= dist;
-                        }
-
-                        knob.style.transform = `translate(${dx * 28}px, ${dy * 28}px)`;
-                        state.touch.moveX = dx;
-                        state.touch.moveY = dy;
+                    if (touch.identifier === leftTouchId) {
+                        updateLeftStick(touch);
                     }
                 }
-            });
+            }, { passive: false });
 
-            const endTouch = () => {
-                state.touch.active = false;
-                state.touch.moveX = 0;
-                state.touch.moveY = 0;
-                knob.style.transform = `translate(0px, 0px)`;
+            const endLeftTouch = (e) => {
+                for (let touch of e.changedTouches) {
+                    if (touch.identifier === leftTouchId) {
+                        leftTouchId = null;
+                        state.touch.moveActive = false;
+                        state.touch.moveX = 0;
+                        state.touch.moveY = 0;
+                        leftKnob.style.transform = `translate(0px, 0px)`;
+                    }
+                }
             };
 
-            stick.addEventListener('touchend', endTouch);
-            stick.addEventListener('touchcancel', endTouch);
+            leftStick.addEventListener('touchend', endLeftTouch);
+            leftStick.addEventListener('touchcancel', endLeftTouch);
 
-            document.getElementById('mobile-btn-fire').addEventListener('touchstart', (e) => {
+            function updateLeftStick(touch) {
+                const rect = leftStick.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                let dx = (touch.clientX - centerX) / (rect.width / 2);
+                let dy = (touch.clientY - centerY) / (rect.height / 2);
+
+                const dist = Math.hypot(dx, dy);
+                if (dist > 1) {
+                    dx /= dist;
+                    dy /= dist;
+                }
+
+                leftKnob.style.transform = `translate(${dx * 28}px, ${dy * 28}px)`;
+                state.touch.moveX = dx;
+                state.touch.moveY = dy;
+            }
+
+            // Aiming & Firing Joystick (Right)
+            const rightStick = document.getElementById('joystick-right');
+            const rightKnob = document.getElementById('joystick-right-knob');
+            let rightTouchId = null;
+
+            rightStick.addEventListener('touchstart', (e) => {
                 e.preventDefault();
+                const touch = e.changedTouches[0];
+                rightTouchId = touch.identifier;
+                state.touch.aimActive = true;
+                updateRightStick(touch);
                 performWeaponAction();
-            });
+            }, { passive: false });
 
+            rightStick.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                for (let touch of e.changedTouches) {
+                    if (touch.identifier === rightTouchId) {
+                        updateRightStick(touch);
+                        performWeaponAction();
+                    }
+                }
+            }, { passive: false });
+
+            const endRightTouch = (e) => {
+                for (let touch of e.changedTouches) {
+                    if (touch.identifier === rightTouchId) {
+                        rightTouchId = null;
+                        state.touch.aimActive = false;
+                        rightKnob.style.transform = `translate(0px, 0px)`;
+                    }
+                }
+            };
+
+            rightStick.addEventListener('touchend', endRightTouch);
+            rightStick.addEventListener('touchcancel', endRightTouch);
+
+            function updateRightStick(touch) {
+                const rect = rightStick.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                let dx = (touch.clientX - centerX) / (rect.width / 2);
+                let dy = (touch.clientY - centerY) / (rect.height / 2);
+
+                const dist = Math.hypot(dx, dy);
+                if (dist > 1) {
+                    dx /= dist;
+                    dy /= dist;
+                }
+
+                rightKnob.style.transform = `translate(${dx * 32}px, ${dy * 32}px)`;
+                state.touch.aimX = dx;
+                state.touch.aimY = dy;
+            }
+
+            // Mobile Action Buttons
             document.getElementById('mobile-btn-car').addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 toggleVehicleEnterExit();
-            });
+            }, { passive: false });
 
             document.getElementById('mobile-btn-reload').addEventListener('touchstart', (e) => {
                 e.preventDefault();
@@ -1705,7 +1798,7 @@
                     updateHUD();
                     spawnDamageText("RELOADED!", entities.player.mesh.position, 'text-blue-400');
                 }
-            });
+            }, { passive: false });
         }
 
         function togglePause() {
@@ -1759,6 +1852,14 @@
             sun.shadow.camera.bottom = -d;
             scene.add(sun);
 
+            // Create Visual Crosshair Ring for Mobile Aiming
+            const crosshairGeo = new THREE.RingGeometry(0.4, 0.55, 16);
+            crosshairGeo.rotateX(-Math.PI / 2);
+            const crosshairMat = new THREE.MeshBasicMaterial({ color: 0xef4444, side: THREE.DoubleSide, transparent: true, opacity: 0.8 });
+            targetCrosshair = new THREE.Mesh(crosshairGeo, crosshairMat);
+            targetCrosshair.position.set(0, 0.1, 0);
+            scene.add(targetCrosshair);
+
             clock = new THREE.Clock();
             raycaster = new THREE.Raycaster();
 
@@ -1782,7 +1883,8 @@
             entities.player.update(dt);
             entities.vehicles.forEach(v => v.update(dt));
 
-            const targetPos = entities.player.inVehicle ? entities.player.inVehicle.mesh.position : entities.player.mesh.position;
+            const playerPos = entities.player.mesh.position;
+            const targetPos = entities.player.inVehicle ? entities.player.inVehicle.mesh.position : playerPos;
             const camTargetX = targetPos.x;
             const camTargetZ = targetPos.z + 20;
 
@@ -1797,6 +1899,28 @@
             }
 
             camera.lookAt(targetPos.x, 0, targetPos.z);
+
+            // Update Target Crosshair Position
+            if (state.touch.aimActive) {
+                targetCrosshair.visible = true;
+                const aimDist = 12;
+                targetCrosshair.position.set(
+                    playerPos.x + state.touch.aimX * aimDist,
+                    0.1,
+                    playerPos.z + state.touch.aimY * aimDist
+                );
+            } else if (state.touch.isMobile) {
+                targetCrosshair.visible = true;
+                const forwardDist = 8;
+                const rot = entities.player.mesh.rotation.y;
+                targetCrosshair.position.set(
+                    playerPos.x + Math.sin(rot) * forwardDist,
+                    0.1,
+                    playerPos.z + Math.cos(rot) * forwardDist
+                );
+            } else {
+                targetCrosshair.visible = false;
+            }
 
             state.enemySpawnTimer += dt;
             if (state.enemySpawnTimer >= CONFIG.SPAWN_ENEMY_INTERVAL && entities.enemies.length < CONFIG.MAX_ENEMIES) {
